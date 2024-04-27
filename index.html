@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+  <head>
+      <script src="https://cdn.jsdelivr.net/pyodide/v0.25.1/full/pyodide.js"></script>
+  </head>
+  <body>
+    Pyodide test page <br>
+    Open your browser console to see Pyodide output
+    <script type="text/javascript">
+      async function main(){
+        let pyodide = await loadPyodide();
+        console.log(pyodide.runPython(`
+            import sys
+            sys.version
+        `));
+        pyodide.runPython(`
+            x = [3, 4]
+        `);
+        const pyX = pyodide.globals.get('x').toJs();
+        console.log(pyX);
+        // >>> [ 3, 4 ]
+      }
+      main();
+    </script>
+  </body>
+</html>

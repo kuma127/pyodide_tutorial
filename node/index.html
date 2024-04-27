@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+  <head>
+      <script src="https://cdn.jsdelivr.net/pyodide/v0.25.1/full/pyodide.js"></script>
+  </head>
+  <body>
+    Pyodide test page <br>
+    Open your browser console to see Pyodide output
+    <script type="text/javascript">
+      async function main(){
+        let pyodide = await loadPyodide();
+        //TODO: test_moduleをパッケージ化する
+        pyodide.runPythonAsync(`
+            from pyodide.http import pyfetch
+            response = await pyfetch("python_package/test_module.py")
+            with open("test_module.py", "wb") as f:
+                f.write(await response.bytes())
+        `);
+        pkg = pyodide.pyimport("test_module");
+        const test = pkg.test_print();
+        console.log(test);
+      }
+      main();
+    </script>
+  </body>
+</html>
