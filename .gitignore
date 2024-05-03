@@ -127,6 +127,7 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+.pyodide_tutorial/
 
 # Spyder project settings
 .spyderproject
