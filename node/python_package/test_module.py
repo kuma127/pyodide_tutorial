@@ -1,2 +1,2 @@
-def test_print() -> None:
+def test_print() -> int:
     return 1 + 1
